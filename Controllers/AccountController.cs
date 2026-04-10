@@ -2,7 +2,6 @@
 using Luftreise_Command_project_.Models;
 using Luftreise_Command_project_.Data;
 
-
 namespace Luftreise_Command_project_.Controllers
 {
     public class AccountController : Controller
@@ -14,9 +13,32 @@ namespace Luftreise_Command_project_.Controllers
             _environment = environment;
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            return View(new LoginModel());
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var user = UserStore.GetUser(model.Email, model.Password);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Неправильний email або пароль");
+                return View(model);
+            }
+
+            HttpContext.Session.SetString("UserEmail", user.Email);
+            UserStore.CurrentUser = user;
+
+            TempData["SuccessMessage"] = "Вхід успішний";
+
+            return RedirectToAction("Profile");
         }
 
         [HttpGet]
@@ -57,7 +79,7 @@ namespace Luftreise_Command_project_.Controllers
                 string uploadsFolder = Path.Combine(_environment.WebRootPath, "uploads", "avatars");
                 Directory.CreateDirectory(uploadsFolder);
 
-                string uniqueFileName = Guid.NewGuid().ToString() + extension;
+                string uniqueFileName = Guid.NewGuid() + extension;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
@@ -68,18 +90,23 @@ namespace Luftreise_Command_project_.Controllers
                 model.AvatarPath = "/uploads/avatars/" + uniqueFileName;
             }
 
-            model.Id = UserStore.Users.Count > 0 ? UserStore.Users.Max(x => x.Id) + 1 : 1;
+            model.Id = UserStore.GetNextId();
             model.IsAdmin = false;
 
-            UserStore.Users.Add(model);
+            UserStore.AddUser(model);
 
             TempData["SuccessMessage"] = "Реєстрація успішна";
             return RedirectToAction("Login");
         }
 
+        [HttpGet]
         public IActionResult Profile()
         {
-            var currentUser = UserStore.CurrentUser;
+            var sessionEmail = HttpContext.Session.GetString("UserEmail");
+            if (string.IsNullOrEmpty(sessionEmail))
+                return RedirectToAction("Login");
+
+            var currentUser = UserStore.GetUserByEmail(sessionEmail);
             if (currentUser == null)
                 return RedirectToAction("Login");
 
@@ -90,19 +117,15 @@ namespace Luftreise_Command_project_.Controllers
         public IActionResult EditProfile(User model)
         {
             var sessionEmail = HttpContext.Session.GetString("UserEmail");
-
             if (string.IsNullOrEmpty(sessionEmail))
                 return RedirectToAction("Login");
 
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
             var user = UserStore.GetUserByEmail(sessionEmail);
-
             if (user == null)
                 return RedirectToAction("Login");
+
+            if (!ModelState.IsValid)
+                return View("Profile", user);
 
             if (model.AvatarFile != null && model.AvatarFile.Length > 0)
             {
@@ -112,19 +135,19 @@ namespace Luftreise_Command_project_.Controllers
                 if (!allowedExtensions.Contains(extension))
                 {
                     ModelState.AddModelError("AvatarFile", "Дозволені лише файли jpg, jpeg, png, webp");
-                    return View(model);
+                    return View("Profile", user);
                 }
 
                 if (model.AvatarFile.Length > 5 * 1024 * 1024)
                 {
                     ModelState.AddModelError("AvatarFile", "Файл не повинен бути більшим за 5 МБ");
-                    return View(model);
+                    return View("Profile", user);
                 }
 
-                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "avatars");
+                string uploadsFolder = Path.Combine(_environment.WebRootPath, "uploads", "avatars");
                 Directory.CreateDirectory(uploadsFolder);
 
-                string uniqueFileName = Guid.NewGuid().ToString() + extension;
+                string uniqueFileName = Guid.NewGuid() + extension;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
@@ -145,9 +168,65 @@ namespace Luftreise_Command_project_.Controllers
             return RedirectToAction("Profile");
         }
 
+        [HttpPost]
+        public IActionResult DeleteAccount()
+        {
+            var sessionEmail = HttpContext.Session.GetString("UserEmail");
+            if (string.IsNullOrEmpty(sessionEmail))
+                return RedirectToAction("Login");
+
+            var user = UserStore.GetUserByEmail(sessionEmail);
+            if (user == null)
+                return RedirectToAction("Login");
+
+            UserStore.RemoveUser(user);
+            HttpContext.Session.Clear();
+            UserStore.CurrentUser = null;
+
+            TempData["SuccessMessage"] = "Акаунт видалено";
+            return RedirectToAction("Login");
+        }
+
+        [HttpGet]
+        public IActionResult Users()
+        {
+            var sessionEmail = HttpContext.Session.GetString("UserEmail");
+            if (string.IsNullOrEmpty(sessionEmail))
+                return RedirectToAction("Login");
+
+            var currentUser = UserStore.GetUserByEmail(sessionEmail);
+            if (currentUser == null || !currentUser.IsAdmin)
+                return RedirectToAction("Profile");
+
+            return View(UserStore.GetAllUsers());
+        }
+
+        [HttpPost]
+        public IActionResult DeleteUser(int id)
+        {
+            var sessionEmail = HttpContext.Session.GetString("UserEmail");
+            if (string.IsNullOrEmpty(sessionEmail))
+                return RedirectToAction("Login");
+
+            var currentUser = UserStore.GetUserByEmail(sessionEmail);
+            if (currentUser == null || !currentUser.IsAdmin)
+                return RedirectToAction("Profile");
+
+            if (currentUser.Id == id)
+            {
+                TempData["SuccessMessage"] = "Адмін не може видалити сам себе";
+                return RedirectToAction("Users");
+            }
+
+            UserStore.RemoveUserById(id);
+            TempData["SuccessMessage"] = "Користувача видалено";
+            return RedirectToAction("Users");
+        }
+
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
+            UserStore.CurrentUser = null;
             TempData["SuccessMessage"] = "Ви вийшли з акаунта";
             return RedirectToAction("Login");
         }
