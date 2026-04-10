@@ -1353,14 +1353,14 @@ img.profile-avatar {
             background: #f8fbff;
         }
 
-/* buttons */
+
 .profile-page .auth-btn {
     width: 100%;
     height: 60px;
     margin-top: 22px;
     border: none;
     border-radius: 18px;
-    background: linear-gradient(135deg, #5a7cff, #8fa9ff);
+    background: linear-gradient(135deg, #2563eb, #4f7fff);
     color: #ffffff;
     font-size: 18px;
     font-weight: 700;

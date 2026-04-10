@@ -13,6 +13,11 @@ namespace Luftreise_Command_project_.Controllers
             _environment = environment;
         }
 
+        
+        
+        
+        
+        
         [HttpGet]
         public IActionResult Login()
         {
@@ -52,12 +57,20 @@ namespace Luftreise_Command_project_.Controllers
             return RedirectToAction("Profile");
         }
 
+        
+        
+        
+        
+        
         [HttpGet]
         public IActionResult Sign_Up()
         {
             return View();
         }
 
+        
+        
+        
         [HttpPost]
         public IActionResult Sign_UP(User model)
         {
@@ -112,6 +125,10 @@ namespace Luftreise_Command_project_.Controllers
 
        
 
+        
+        
+        
+        
         [HttpPost]
         public IActionResult EditProfile(User model)
         {
@@ -169,6 +186,11 @@ namespace Luftreise_Command_project_.Controllers
             return RedirectToAction("Profile");
         }
 
+        
+        
+        
+        
+        
         [HttpPost]
         public IActionResult DeleteAccount()
         {
@@ -188,6 +210,12 @@ namespace Luftreise_Command_project_.Controllers
             return RedirectToAction("Login");
         }
 
+       
+        
+        
+        
+        
+        
         [HttpGet]
         public IActionResult Users()
         {
@@ -202,6 +230,11 @@ namespace Luftreise_Command_project_.Controllers
             return View(UserStore.GetAllUsers());
         }
 
+        
+        
+        
+        
+        
         [HttpPost]
         public IActionResult DeleteUser(int id)
         {
@@ -224,12 +257,47 @@ namespace Luftreise_Command_project_.Controllers
             return RedirectToAction("Users");
         }
 
+        
+        
+        
+        
+        
+        
+        
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
             Response.Cookies.Delete("UserEmail");
+            UserStore.CurrentUser = null;
             TempData["SuccessMessage"] = "Ви вийшли з акаунта";
             return RedirectToAction("Login");
+        }
+
+
+        [HttpGet]
+        public IActionResult Profile()
+        {
+            var sessionEmail = HttpContext.Session.GetString("UserEmail");
+
+            if (string.IsNullOrEmpty(sessionEmail))
+            {
+                var cookieEmail = Request.Cookies["UserEmail"];
+
+                if (!string.IsNullOrEmpty(cookieEmail))
+                {
+                    sessionEmail = cookieEmail;
+                    HttpContext.Session.SetString("UserEmail", sessionEmail);
+                }
+            }
+
+            if (string.IsNullOrEmpty(sessionEmail))
+                return RedirectToAction("Login");
+
+            var currentUser = UserStore.GetUserByEmail(sessionEmail);
+            if (currentUser == null)
+                return RedirectToAction("Login");
+
+            return View(currentUser);
         }
     }
 }
