@@ -33,6 +33,15 @@ namespace Luftreise_Command_project_.Controllers
                 return View(model);
             }
 
+            if (model.RememberMe)
+            {
+                Response.Cookies.Append("UserEmail", user.Email, new CookieOptions
+                {
+                    Expires = DateTimeOffset.Now.AddDays(30)
+                });
+            }
+
+
             HttpContext.Session.SetString("UserEmail", user.Email);
             UserStore.CurrentUser = user;
 
@@ -123,7 +132,9 @@ namespace Luftreise_Command_project_.Controllers
             var user = UserStore.GetUserByEmail(sessionEmail);
             if (user == null)
                 return RedirectToAction("Login");
-
+            ModelState.Remove("Email");
+            ModelState.Remove("Password");
+            ModelState.Remove("ConfirmPassword");
             if (!ModelState.IsValid)
                 return View("Profile", user);
 
