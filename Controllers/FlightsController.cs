@@ -8,7 +8,7 @@ namespace Luftreise_Command_project_.Controllers
         [HttpPost]
         public IActionResult Search(SearchModels model)
         {
-            return View("Booking", model);
+            return View("Flights", model);
         }
 
         public IActionResult Details(int id)

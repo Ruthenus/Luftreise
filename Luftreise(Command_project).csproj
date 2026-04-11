@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Flights\Booking.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Views\Flights\Booking.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Views\SignUP_Profile\" />
     <Folder Include="wwwroot\uploads\avatars\" />
   </ItemGroup>

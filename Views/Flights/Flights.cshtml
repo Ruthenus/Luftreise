@@ -1,5 +1,6 @@
 ﻿@model Luftreise_Command_project_.Models.SearchModels
 
+
 @{
     ViewData["Title"] = "Рейси";
 }
@@ -9,11 +10,20 @@
 
         <div class="booking-header">
             <h1>Рейси: @Model.From → @Model.To</h1>
-            <p>
-                Дата: @Model.FlightDate.ToString("yyyy-MM-dd")
-                <span class="dot">•</span>
-                Пасажири: 1
-            </p>
+
+            <div class="booking-meta">
+                <p>
+                    Дата: @Model.FlightDate.ToString("yyyy-MM-dd")
+                    <span class="dot">•</span>
+                    Пасажири:
+                </p>
+
+                <div class="passenger-counter">
+                    <button type="button" id="minusPassengers">−</button>
+                    <span id="passengerCount">1</span>
+                    <button type="button" id="plusPassengers">+</button>
+                </div>
+            </div>
         </div>
 
         <div class="booking-content">
@@ -23,8 +33,8 @@
                     <h2>Фільтри</h2>
 
                     <div class="filter-group">
-                        <label for="priceRange">Максимальна ціна: <span id="priceValue">500</span> €</label>
-                        <input type="range" id="priceRange" min="50" max="500" value="500" />
+                        <label for="priceRange">Максимальна ціна: <span id="priceValue">15000</span> €</label>
+                        <input type="range" id="priceRange" min="50" max="15000" value="15000" />
                     </div>
 
                     <div class="filter-group">
@@ -53,7 +63,8 @@
             <div class="flights-section">
                 <p class="results-count">Знайдено 4 рейсів</p>
 
-                <div class="flight-card">
+                <!-- 1 -->
+                <div class="flight-card" data-base-price="299">
                     <div class="flight-top">
                         <div class="airline-box">
                             <div class="airline-icon">✈</div>
@@ -83,9 +94,18 @@
                             <span>@Model.To</span>
                         </div>
 
-                        <div class="flight-price">
-                            <h2>299 €</h2>
-                            <p>за особу</p>
+                        <div class="flight-price" data-base-price="299">
+                            <div class="flight-rating">
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                            </div>
+
+                            <h2><span class="price-value">299</span> €</h2>
+                            <p>за <span class="passenger-label">1</span> пас.</p>
+
                             <a asp-controller="Booking" asp-action="Details" asp-route-id="1" class="book-btn">
                                 Забронювати
                             </a>
@@ -99,7 +119,8 @@
                     </div>
                 </div>
 
-                <div class="flight-card">
+                <!-- 2 -->
+                <div class="flight-card" data-base-price="349">
                     <div class="flight-top">
                         <div class="airline-box">
                             <div class="airline-icon">✈</div>
@@ -129,9 +150,18 @@
                             <span>@Model.To</span>
                         </div>
 
-                        <div class="flight-price">
-                            <h2>349 €</h2>
-                            <p>за особу</p>
+                        <div class="flight-price" data-base-price="349">
+                            <div class="flight-rating">
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star">★</span>
+                            </div>
+
+                            <h2><span class="price-value">349</span> €</h2>
+                            <p>за <span class="passenger-label">1</span> пас.</p>
+
                             <a asp-controller="Booking" asp-action="Details" asp-route-id="2" class="book-btn">
                                 Забронювати
                             </a>
@@ -145,7 +175,8 @@
                     </div>
                 </div>
 
-                <div class="flight-card">
+                <!-- 3 -->
+                <div class="flight-card" data-base-price="389">
                     <div class="flight-top">
                         <div class="airline-box">
                             <div class="airline-icon">✈</div>
@@ -175,9 +206,18 @@
                             <span>@Model.To</span>
                         </div>
 
-                        <div class="flight-price">
-                            <h2>389 €</h2>
-                            <p>за особу</p>
+                        <div class="flight-price" data-base-price="389">
+                            <div class="flight-rating">
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+
+                            <h2><span class="price-value">389</span> €</h2>
+                            <p>за <span class="passenger-label">1</span> пас.</p>
+
                             <a asp-controller="Booking" asp-action="Details" asp-route-id="3" class="book-btn">
                                 Забронювати
                             </a>
@@ -191,7 +231,8 @@
                     </div>
                 </div>
 
-                <div class="flight-card">
+                <!-- 4 -->
+                <div class="flight-card" data-base-price="259">
                     <div class="flight-top">
                         <div class="airline-box">
                             <div class="airline-icon">✈</div>
@@ -221,10 +262,22 @@
                             <span>@Model.To</span>
                         </div>
 
-                        <div class="flight-price">
-                            <h2>259 €</h2>
-                            <p>за особу</p>
-                            <a asp-controller="Booking" asp-action="Details" asp-route-id="4" class="book-btn">
+                        <div class="flight-price" data-base-price="259">
+                            <div class="flight-rating">
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+
+                            <h2><span class="price-value">259</span> €</h2>
+                            <p>за <span class="passenger-label">1</span> пас.</p>
+
+                            <a asp-controller="Flights"
+                               asp-action="Booking"
+                               asp-route-id="@Model.Id"
+                               class="book-btn">
                                 Забронювати
                             </a>
                         </div>
@@ -241,16 +294,99 @@
         </div>
     </div>
 </section>
-
 @section Scripts {
     <script>
         const priceRange = document.getElementById("priceRange");
         const priceValue = document.getElementById("priceValue");
 
-        if (priceRange && priceValue) {
-            priceRange.addEventListener("input", function () {
-                priceValue.textContent = this.value;
+        const minusBtn = document.getElementById("minusPassengers");
+        const plusBtn = document.getElementById("plusPassengers");
+        const passengerCountEl = document.getElementById("passengerCount");
+        const resultsCountEl = document.querySelector(".results-count");
+
+        const resetBtn = document.querySelector(".reset-btn");
+
+        const checkboxes = document.querySelectorAll(".checkbox-row input");
+
+        let passengerCount = 1;
+
+        
+        const cards = document.querySelectorAll(".flight-card");
+        cards[0].dataset.class = "econom";
+        cards[1].dataset.class = "business";
+        cards[2].dataset.class = "first";
+        cards[3].dataset.class = "econom";
+
+        function updateFlights() {
+            const maxPrice = parseInt(priceRange.value);
+            priceValue.textContent = maxPrice;
+            passengerCountEl.textContent = passengerCount;
+
+            let visibleCount = 0;
+
+            const selectedClasses = [];
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    selectedClasses.push(cb.nextElementSibling.textContent.trim());
+                }
             });
+
+            document.querySelectorAll(".flight-card").forEach(card => {
+                const basePrice = parseInt(card.dataset.basePrice);
+                const totalPrice = basePrice * passengerCount;
+
+                const className = card.querySelector(".flight-footer span:nth-child(2)").textContent.trim();
+
+                const priceBox = card.querySelector(".flight-price");
+                priceBox.querySelector(".price-value").textContent = totalPrice;
+                priceBox.querySelector(".passenger-label").textContent = passengerCount;
+
+                const classAllowed = selectedClasses.includes(className);
+                const priceAllowed = totalPrice <= maxPrice;
+
+                if (classAllowed && priceAllowed) {
+                    card.style.display = "";
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            resultsCountEl.textContent = `Знайдено ${visibleCount} рейсів`;
         }
+
+       
+        priceRange.addEventListener("input", updateFlights);
+
+      
+        plusBtn.addEventListener("click", function () {
+            passengerCount++;
+            updateFlights();
+        });
+
+      
+        minusBtn.addEventListener("click", function () {
+            if (passengerCount > 1) {
+                passengerCount--;
+                updateFlights();
+            }
+        });
+
+       
+        checkboxes.forEach(cb => {
+            cb.addEventListener("change", updateFlights);
+        });
+
+        
+        resetBtn.addEventListener("click", function () {
+            priceRange.value = 15000;
+            passengerCount = 1;
+
+            checkboxes.forEach(cb => cb.checked = true);
+
+            updateFlights();
+        });
+
+        updateFlights();
     </script>
 }
