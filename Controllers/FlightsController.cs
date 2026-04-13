@@ -5,15 +5,65 @@ namespace Luftreise_Command_project_.Controllers
 {
     public class FlightsController : Controller
     {
+        [HttpGet]
+        public IActionResult Flights()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Search(SearchModels model)
         {
             return View("Flights", model);
         }
 
-        public IActionResult Details(int id)
+        [HttpGet]
+        public IActionResult Booking(
+            int id,
+            string airline,
+            string flightNumber,
+            string fromCity,
+            string toCity,
+            string departureTime,
+            string arrivalTime,
+            DateTime flightDate,
+            string flightClass,
+            decimal price)
         {
-            return View();
+            var model = new BookingViewModel
+            {
+                FlightId = id,
+                Airline = airline,
+                FlightNumber = flightNumber,
+                FromCity = fromCity,
+                ToCity = toCity,
+                DepartureTime = departureTime,
+                ArrivalTime = arrivalTime,
+                FlightDate = flightDate,
+                FlightClass = flightClass,
+                Price = price
+            };
+
+            return View("Booking", model);
+        }
+
+        [HttpPost]
+        public IActionResult Booking(BookingViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            return RedirectToAction("Pay", model); 
+
+        }
+
+
+       
+
+        [HttpGet]
+        public IActionResult AirportPayment(BookingViewModel model)
+        {
+            return View(model);
         }
     }
 }

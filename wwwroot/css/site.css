@@ -1984,3 +1984,528 @@ img.profile-avatar {
     .star.active {
         color: #fbbf24;
     }
+
+
+.booking-screen {
+    max-width: 1350px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.booking-screen__header h1 {
+    font-size: 52px;
+    font-weight: 800;
+    color: #102544;
+    margin-bottom: 10px;
+}
+
+.booking-screen__header p {
+    font-size: 20px;
+    color: #667085;
+    margin-bottom: 30px;
+}
+
+.booking-screen__layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 36px;
+    align-items: start;
+}
+
+.booking-screen__form-card,
+.booking-screen__ticket-card {
+    background: #ffffff;
+    border: 1px solid #e4e7ec;
+    border-radius: 24px;
+    padding: 32px;
+}
+
+.booking-screen__steps {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.booking-screen__step {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d0d5dd;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.booking-screen__step--active {
+    background: #2563eb;
+}
+
+.booking-screen__step-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #98a2b3;
+}
+
+.booking-screen__step-text--active {
+    color: #2563eb;
+}
+
+.booking-screen__line {
+    width: 60px;
+    height: 2px;
+    background: #d0d5dd;
+}
+
+.booking-screen__section-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #101828;
+    margin-bottom: 24px;
+}
+
+.booking-screen__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.booking-screen__field {
+    margin-bottom: 20px;
+}
+
+    .booking-screen__field label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #101828;
+    }
+
+    .booking-screen__field input {
+        width: 100%;
+        height: 54px;
+        border: none;
+        border-radius: 14px;
+        background: #f2f4f7;
+        padding: 0 16px;
+        font-size: 16px;
+        outline: none;
+    }
+
+.booking-screen__note {
+    margin: 12px 0 24px;
+    padding: 16px 18px;
+    border: 1px solid #d0d5dd;
+    border-radius: 16px;
+    background: #fcfcfd;
+    color: #667085;
+}
+
+.booking-screen__submit {
+    height: 54px;
+    padding: 0 28px;
+    border: none;
+    border-radius: 16px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.booking-screen__ticket-item {
+    margin-bottom: 22px;
+}
+
+    .booking-screen__ticket-item span,
+    .booking-screen__ticket-two span {
+        display: block;
+        margin-bottom: 6px;
+        color: #667085;
+    }
+
+    .booking-screen__ticket-item strong,
+    .booking-screen__ticket-two strong {
+        color: #101828;
+        font-size: 18px;
+    }
+
+.booking-screen__ticket-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 22px;
+}
+
+.booking-screen__ticket-item--total strong {
+    font-size: 22px;
+    color: #2563eb;
+}
+
+.booking-screen__error {
+    display: block;
+    margin-top: 6px;
+    color: #d92d20;
+    font-size: 14px;
+}
+
+.booking-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 52px;
+    margin-top: 10px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #2563eb, #4f7fff);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.22);
+    transition: all 0.2s ease;
+}
+
+    .booking-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 28px rgba(37, 99, 235, 0.28);
+        background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    }
+
+    .booking-btn:active {
+        transform: translateY(0);
+    }
+
+@media (max-width: 992px) {
+    .booking-screen__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-screen__row {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-screen__header h1 {
+        font-size: 38px;
+    }
+}
+
+
+/* =========================
+   BOOKING PAGE — LIGHT UI
+   ========================= */
+
+.booking-screen {
+    min-height: calc(100vh - 80px);
+    background: #f8fafc;
+    padding: 0 0 48px;
+}
+
+.booking-screen__topline {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 22px 24px 14px;
+    font-size: 15px;
+    color: #475569;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.booking-screen__container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 28px 24px 0;
+}
+
+.booking-screen__steps {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 0 0 26px;
+    padding-left: 260px;
+}
+
+.booking-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #94a3b8;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.booking-step__circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.booking-step.active {
+    color: #2563eb;
+}
+
+    .booking-step.active .booking-step__circle {
+        background: #2563eb;
+        color: #fff;
+    }
+
+.booking-step__line {
+    width: 60px;
+    height: 1px;
+    background: #cbd5e1;
+}
+
+.booking-screen__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 380px;
+    gap: 32px;
+    align-items: start;
+}
+
+.booking-screen__form-card,
+.booking-screen__ticket-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 22px;
+    box-shadow: none;
+}
+
+.booking-screen__form-card {
+    padding: 30px;
+}
+
+.booking-screen__ticket-card {
+    padding: 28px 30px;
+    position: sticky;
+    top: 95px;
+}
+
+.booking-screen__form-title,
+.booking-screen__ticket-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 28px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.booking-screen__form-title-icon,
+.booking-screen__ticket-title-icon {
+    font-size: 24px;
+    color: #2563eb;
+}
+
+.booking-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 18px;
+}
+
+.booking-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+    .booking-field.full {
+        grid-column: 1 / -1;
+    }
+
+    .booking-field label {
+        font-size: 14px;
+        font-weight: 700;
+        color: #111827;
+    }
+
+    .booking-field input {
+        width: 100%;
+        height: 46px;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        background: #f3f4f6;
+        padding: 0 16px;
+        font-size: 15px;
+        color: #334155;
+        outline: none;
+        transition: 0.2s ease;
+    }
+
+        .booking-field input:focus {
+            border-color: #2563eb;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+
+    .booking-field span[data-valmsg-for] {
+        font-size: 12px;
+        color: #dc2626;
+    }
+
+.input-validation-error {
+    border-color: #f87171 !important;
+    background: #fff !important;
+    box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.10) !important;
+}
+
+.booking-note {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 54px;
+    padding: 0 18px;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    background: #fff;
+    font-size: 14px;
+    color: #8b5e3c;
+}
+
+.booking-note__icon {
+    font-size: 18px;
+    color: #111827;
+}
+
+.booking-submit {
+    grid-column: 1 / -1;
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+    background: #2563eb;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+    .booking-submit:hover {
+        background: #1d4ed8;
+    }
+
+.booking-ticket-section {
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.booking-ticket-label {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 6px;
+}
+
+.booking-ticket-value {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.booking-ticket-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.booking-ticket-total {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.booking-ticket-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #4b5563;
+}
+
+    .booking-ticket-total-row strong {
+        font-size: 18px;
+        color: #111827;
+    }
+
+.validation-summary {
+    grid-column: 1 / -1;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    font-size: 14px;
+}
+
+@media (max-width: 1200px) {
+    .booking-screen__steps {
+        padding-left: 0;
+    }
+
+    .booking-screen__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-screen__ticket-card {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .booking-screen__container {
+        padding: 20px 14px 0;
+    }
+
+    .booking-screen__topline {
+        padding: 16px 14px 12px;
+    }
+
+    .booking-screen__steps {
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .booking-step {
+        font-size: 16px;
+    }
+
+    .booking-step__circle {
+        width: 36px;
+        height: 36px;
+        font-size: 17px;
+    }
+
+    .booking-step__line {
+        width: 36px;
+    }
+
+    .booking-screen__form-card,
+    .booking-screen__ticket-card {
+        padding: 20px 16px;
+        border-radius: 18px;
+    }
+
+    .booking-form {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .booking-screen__form-title,
+    .booking-screen__ticket-title {
+        font-size: 22px;
+        margin-bottom: 22px;
+    }
+}

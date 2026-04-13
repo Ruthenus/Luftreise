@@ -25,11 +25,15 @@ namespace Luftreise_Command_project_.Controllers
 
 
         [HttpPost]
-        public IActionResult Search(SearchModels model) {
+        public IActionResult Search(SearchModels model)
+        {
             ViewBag.From = model.From;
             ViewBag.To = model.To;
             ViewBag.Date = model.FlightDate.ToString("yyyy-MM-dd");
-            return View("Flights");
+
+            return View("Flights", model);
         }
+
+        
     }
 }
