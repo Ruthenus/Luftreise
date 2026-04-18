@@ -78,18 +78,18 @@ cd 777
 dotnet restore
 ```
 
-3. Оновіть connection string у `src/Luftreise.Web/appsettings.json`:
+3. Оновіть connection string у файлі `appsettings.json`:
 ```json
-"ConnectionStrings": {
-  "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=LuftreiseDb;Trusted_Connection=true;MultipleActiveResultSets=true"
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=LuftreiseDb;Trusted_Connection=true;MultipleActiveResultSets=true;TrustServerCertificate=True"
+  }
 }
-```
 
 4. Створіть міграції та базу даних:
 ```bash
-cd src/Luftreise.Infrastructure
-dotnet ef migrations add InitialCreate --startup-project ../Luftreise.Web
-dotnet ef database update --startup-project ../Luftreise.Web
+dotnet ef migrations add InitialCreate --project .\Luftreise.Infrastructure.csproj --startup-project "..\..\Luftreise(Command_project).csproj"
+dotnet ef database update --project .\Luftreise.Infrastructure.csproj --startup-project "..\..\Luftreise(Command_project).csproj"
 ```
 
 5. Запустіть додаток:
