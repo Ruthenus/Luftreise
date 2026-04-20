@@ -18,7 +18,7 @@ namespace Luftreise_Command_project_.Models
         public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Введіть номер телефону")]
-        [RegularExpression(@"^\+?[0-9\s\-\(\)]{10,20}$", ErrorMessage = "Неправильний формат телефону")]
+        [RegularExpression(@"^\+?[0-9\s\-\(\)]{6,20}$", ErrorMessage = "Неправильний формат телефону")]
         public string Phone { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Введіть місто")]
@@ -28,7 +28,7 @@ namespace Luftreise_Command_project_.Models
         public string Country { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Вкажіть дату народження")]
-        [MaximumAge(24, ErrorMessage = "Вам має бути щонайбільше 16 років")]
+        [MaximumAge(24, ErrorMessage = "Вам має бути щонайбільше 24 роки")]
         public DateTime? BirthDate { get; set; }
 
         [Required(ErrorMessage = "Введіть пароль")]

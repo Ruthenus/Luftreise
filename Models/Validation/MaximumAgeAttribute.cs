@@ -29,7 +29,7 @@ namespace Luftreise_Command_project_.Models.Validation
                 return new ValidationResult("Дата народження не може бути в майбутньому");
 
             if (age > _maximumAge)
-                return new ValidationResult($"Користувач повинен мати щонайбільше {_maximumAge} років");
+                return new ValidationResult($"Користувач повинен мати щонайбільше {_maximumAge} роки");
 
             return ValidationResult.Success;
         }
