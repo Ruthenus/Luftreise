@@ -2,13 +2,13 @@
 
 namespace Luftreise_Command_project_.Models.Validation
 {
-    public class MinimumAgeAttribute : ValidationAttribute
+    public class MaximumAgeAttribute : ValidationAttribute
     {
-        private readonly int _minimumAge;
+        private readonly int _maximumAge;
 
-        public MinimumAgeAttribute(int minimumAge)
+        public MaximumAgeAttribute(int maximumAge)
         {
-            _minimumAge = minimumAge;
+            _maximumAge = maximumAge;
         }
 
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
@@ -28,8 +28,8 @@ namespace Luftreise_Command_project_.Models.Validation
             if (birthDate > today)
                 return new ValidationResult("Дата народження не може бути в майбутньому");
 
-            if (age < _minimumAge)
-                return new ValidationResult($"Користувач повинен мати щонайменше {_minimumAge} років");
+            if (age > _maximumAge)
+                return new ValidationResult($"Користувач повинен мати щонайбільше {_maximumAge} років");
 
             return ValidationResult.Success;
         }

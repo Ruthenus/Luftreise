@@ -28,7 +28,7 @@ namespace Luftreise_Command_project_.Models
         public string Country { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Вкажіть дату народження")]
-        [MinimumAge(16, ErrorMessage = "Вам має бути щонайменше 16 років")]
+        [MaximumAge(24, ErrorMessage = "Вам має бути щонайбільше 16 років")]
         public DateTime? BirthDate { get; set; }
 
         [Required(ErrorMessage = "Введіть пароль")]
