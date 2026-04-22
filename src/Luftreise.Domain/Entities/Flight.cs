@@ -16,9 +16,8 @@ public class Flight
     public string AirlineName { get; set; } = string.Empty;
     public FlightStatus Status { get; set; }
     public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
-<<<<<<< HEAD
+
 
     public string FlightClass { get; set; } = string.Empty;
-=======
->>>>>>> 595becd4d01a77026a22bab0118abd03b0a43f8b
+
 }
