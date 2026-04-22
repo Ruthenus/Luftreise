@@ -1,6 +1,9 @@
 using Luftreise.Infrastructure;
+<<<<<<< HEAD
 using Luftreise.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+=======
+>>>>>>> 595becd4d01a77026a22bab0118abd03b0a43f8b
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +14,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
+<<<<<<< HEAD
 
 using (var scope = app.Services.CreateScope())
 {
@@ -18,6 +22,8 @@ using (var scope = app.Services.CreateScope())
   await DbSeeder.SeedAsync(dbContext);
 
 }
+=======
+>>>>>>> 595becd4d01a77026a22bab0118abd03b0a43f8b
 app.UseStaticFiles();
 app.UseRouting();
 
@@ -27,4 +33,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+<<<<<<< HEAD
 app.Run();
+=======
+app.Run();
+>>>>>>> 595becd4d01a77026a22bab0118abd03b0a43f8b

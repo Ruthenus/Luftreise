@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using Luftreise.Application.Interfaces;
 
 using Luftreise_Command_project_.Models;
@@ -18,6 +19,22 @@ namespace Luftreise_Command_project.Controllers
             _flightRepository = flightRepository;
       
     }
+=======
+﻿using Luftreise.Application.Interfaces;
+using Luftreise_Command_project_.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Luftreise_Command_project_.Controllers
+{
+    public class FlightsController : Controller
+    {
+        private readonly IBookingRepository _bookingRepository;
+
+        public FlightsController(IBookingRepository bookingRepository)
+        {
+            _bookingRepository = bookingRepository;
+        }
+>>>>>>> 595becd4d01a77026a22bab0118abd03b0a43f8b
 
         [HttpGet]
         public IActionResult Flights()
@@ -77,6 +94,7 @@ namespace Luftreise_Command_project.Controllers
 
             return View("AirportPayment", model);
         }
+<<<<<<< HEAD
        
         [HttpPost]
         public async Task<IActionResult> Search(SearchModels model)
@@ -85,6 +103,13 @@ namespace Luftreise_Command_project.Controllers
               model.To,
               model.FlightDate);
             return View("Flights", flights);
+=======
+
+        [HttpPost]
+        public IActionResult Search(SearchModels model)
+        {
+            return View("Flights", model);
+>>>>>>> 595becd4d01a77026a22bab0118abd03b0a43f8b
         }
     }
 }
