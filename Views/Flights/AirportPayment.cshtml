@@ -1,8 +1,8 @@
-@model Luftreise_Luftreise.Presentation_.Models.BookingViewModel
+@model Luftreise.Models.BookingViewModel
 
 @{
     ViewData["Title"] = "Бронювання підтверджено";
-    var passengers = Model.Passengers ?? new List<Luftreise_Luftreise.Presentation_.Models.PassengerFormViewModel>();
+    var passengers = Model.Passengers ?? new List<Luftreise.Models.PassengerFormViewModel>();
     var firstPassenger = passengers.FirstOrDefault();
     var totalPrice = Model.Price;
     var bookingNumber = string.IsNullOrWhiteSpace(Model.BookingReference)

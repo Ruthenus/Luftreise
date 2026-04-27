@@ -1,4 +1,4 @@
-﻿namespace Luftreise_Luftreise.Presentation_.Models
+﻿namespace Luftreise.Models
 {
     public class SearchModels
     {

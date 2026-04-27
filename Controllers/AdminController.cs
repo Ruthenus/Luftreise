@@ -2,13 +2,13 @@ using Luftreise.Application.Interfaces;
 using Luftreise.Domain.Entities;
 using Luftreise.Domain.Enums;
 using Luftreise.Infrastructure.Data;
-using Luftreise_Luftreise.Presentation_.Models;
-using Luftreise_Luftreise.Presentation_.Models.Admin;
+using Luftreise.Models;
+using Luftreise.Models.Admin;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace Luftreise_Luftreise.Presentation_.Controllers;
+namespace Luftreise.Controllers;
 
 public class AdminController : Controller
 {
@@ -57,7 +57,7 @@ public class AdminController : Controller
         var users = await _userRepository.GetAllAsync();
         var model = users
             .OrderByDescending(u => u.CreatedAt)
-            .Select(u => new Luftreise_Luftreise.Presentation_.Models.User
+            .Select(u => new Luftreise.Models.User
             {
                 Id = u.Id,
                 FullName = $"{u.FirstName} {u.LastName}".Trim(),

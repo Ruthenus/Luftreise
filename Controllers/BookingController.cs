@@ -1,8 +1,8 @@
-using Luftreise_Luftreise.Presentation_.Models;
+using Luftreise.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Luftreise_Luftreise.Presentation_.Controllers
+namespace Luftreise.Controllers
 {
     public class BookingController : Controller
     {

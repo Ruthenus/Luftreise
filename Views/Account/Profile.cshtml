@@ -1,5 +1,5 @@
-@model Luftreise_Luftreise.Presentation_.Models.User
-@using Luftreise_Luftreise.Presentation_.Models
+@model Luftreise.Models.User
+@using Luftreise.Models
 
 @{
     ViewData["Title"] = "Профіль";
@@ -9,7 +9,7 @@
         : "U";
 
     var bookings = ViewBag.Bookings as List<BookingTicket>;
-    var adminUsers = ViewBag.AdminUsers as List<Luftreise_Luftreise.Presentation_.Models.User>;
+    var adminUsers = ViewBag.AdminUsers as List<Luftreise.Models.User>;
     var adminFlights = ViewBag.AdminFlights as List<Luftreise.Domain.Entities.Flight>;
 }
 

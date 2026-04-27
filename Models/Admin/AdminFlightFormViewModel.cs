@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Luftreise_Luftreise.Presentation_.Models.Admin;
+namespace Luftreise.Models.Admin;
 
 public class AdminFlightFormViewModel
 {

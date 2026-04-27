@@ -1,8 +1,8 @@
-@model Luftreise_Luftreise.Presentation_.Models.BookingViewModel
+@model Luftreise.Models.BookingViewModel
 
 @{
     ViewData["Title"] = "Бронювання";
-    var passengers = Model.Passengers ?? new List<Luftreise_Luftreise.Presentation_.Models.PassengerFormViewModel>();
+    var passengers = Model.Passengers ?? new List<Luftreise.Models.PassengerFormViewModel>();
     var passengerCount = passengers.Count;
     var totalPrice = Model.Price;
 }

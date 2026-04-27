@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Luftreise_Luftreise.Presentation_.Models.Validation
+namespace Luftreise.Models.Validation
 {
     public class MinimumAgeAttribute : ValidationAttribute
     {

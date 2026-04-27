@@ -2,12 +2,12 @@ using Luftreise.Application.DTOs;
 using Luftreise.Application.Interfaces;
 using Luftreise.Application.Services;
 using Luftreise.Infrastructure.Data;
-using Luftreise_Luftreise.Presentation_.Models;
+using Luftreise.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Luftreise_Luftreise.Presentation.Controllers
+namespace Luftreise.Controllers
 {
   public class FlightsController : Controller
   {

@@ -1,4 +1,4 @@
-@model Luftreise_Luftreise.Presentation_.Models.SearchModels
+@model Luftreise.Models.SearchModels
 
 @{
     ViewData["Title"] = "Головна - Luftreise";
@@ -6,7 +6,7 @@
     var from = Model?.From ?? "";
     var to = Model?.To ?? "";
     var flightDate = Model?.FlightDate != default
-        ? Model.FlightDate.ToString("yyyy-MM-dd")
+        ? Model?.FlightDate.ToString("yyyy-MM-dd")
         : "";
 }
 
