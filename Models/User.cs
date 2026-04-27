@@ -1,9 +1,9 @@
-using Luftreise_Command_project_.Models.Validation;
-using Luftreise_Command_project_.Models;
+using Luftreise_Luftreise.Presentation_.Models.Validation;
+using Luftreise_Luftreise.Presentation_.Models;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace Luftreise_Command_project_.Models
+namespace Luftreise_Luftreise.Presentation_.Models
 {
     public class User
     {

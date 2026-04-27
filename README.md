@@ -48,7 +48,7 @@ Luftreise/
 │   ├── Luftreise.Domain/              # Entities, Enums, Value Objects
 │   ├── Luftreise.Application/         # DTOs, Commands, Queries, Interfaces
 │   ├── Luftreise.Infrastructure/      # DbContext, Repositories, EF Core
-├── Luftreise(Command_project).csproj  # Controllers, Views, wwwroot
+├── Luftreise(Luftreise.Presentation).csproj  # Controllers, Views, wwwroot
 ├── tests/
 │   └── Luftreise.Tests/           # NUnit тести
 └── Luftreise.sln
@@ -75,7 +75,7 @@ Luftreise/
 1. **Клонуйте репозиторій** та перейдіть у папку проєкту:
 
 ```bash
-cd "D:\IT STEP\!!!\Командний проєкт №1\Command_project"
+cd "D:\IT STEP\!!!\Командний проєкт №1\Luftreise.Presentation"
 ```
 
 2. Відновіть NuGet пакети:
@@ -96,16 +96,16 @@ dotnet restore
 ```bash
 dotnet ef migrations add InitialCreate `
   --project src/Luftreise.Infrastructure `
-  --startup-project "Luftreise(Command_project).csproj"
+  --startup-project "Luftreise(Luftreise.Presentation).csproj"
 
 dotnet ef database update `
   --project src/Luftreise.Infrastructure `
-  --startup-project "Luftreise(Command_project).csproj"
+  --startup-project "Luftreise(Luftreise.Presentation).csproj"
 ```
 
 5. Запустіть додаток:
 ```bash
-dotnet run --project "Luftreise(Command_project).csproj"
+dotnet run --project "Luftreise(Luftreise.Presentation).csproj"
 ```
 Або через Visual Studio — просто натисніть F5.
 Відкрийте браузер: `https://localhost:7171` або `http://localhost:5238`
@@ -124,12 +124,12 @@ dotnet test
 # Створити нову міграцію
 dotnet ef migrations add <MigrationName> `
   --project src/Luftreise.Infrastructure `
-  --startup-project "Luftreise(Command_project).csproj"
+  --startup-project "Luftreise(Luftreise.Presentation).csproj"
 
 # Застосувати міграції
 dotnet ef database update `
   --project src/Luftreise.Infrastructure `
-  --startup-project "Luftreise(Command_project).csproj"
+  --startup-project "Luftreise(Luftreise.Presentation).csproj"
 ```
 
 ## Патерни та принципи

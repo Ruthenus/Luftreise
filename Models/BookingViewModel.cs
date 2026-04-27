@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-namespace Luftreise_Command_project_.Models
+namespace Luftreise_Luftreise.Presentation_.Models
 {
     public class BookingViewModel
     {

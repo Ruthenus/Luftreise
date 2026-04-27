@@ -1,12 +1,12 @@
 using Luftreise.Application.Interfaces;
 using Luftreise.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Luftreise_Command_project_.Models;
+using Luftreise_Luftreise.Presentation_.Models;
 using System.Security.Cryptography;
 using System.Text;
 using Luftreise.Domain.Enums;
 
-namespace Luftreise_Command_project_.Controllers
+namespace Luftreise_Luftreise.Presentation_.Controllers
 {
     public class AccountController : Controller
     {
@@ -85,7 +85,7 @@ namespace Luftreise_Command_project_.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Sign_Up(Luftreise_Command_project_.Models.User model)
+        public async Task<IActionResult> Sign_Up(Luftreise_Luftreise.Presentation_.Models.User model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -169,7 +169,7 @@ namespace Luftreise_Command_project_.Controllers
       if (currentUser == null)
         return RedirectToAction("Login");
 
-      var model = new Luftreise_Command_project_.Models.User
+      var model = new Luftreise_Luftreise.Presentation_.Models.User
       {
         Id = currentUser.Id,
         Email = currentUser.Email,
@@ -215,7 +215,7 @@ namespace Luftreise_Command_project_.Controllers
 
         ViewBag.AdminUsers = users
           .OrderByDescending(u => u.CreatedAt)
-          .Select(u => new Luftreise_Command_project_.Models.User
+          .Select(u => new Luftreise_Luftreise.Presentation_.Models.User
           {
             Id = u.Id,
             FullName = $"{u.FirstName} {u.LastName}".Trim(),
@@ -302,7 +302,7 @@ namespace Luftreise_Command_project_.Controllers
 
         
         [HttpPost]
-        public async Task<IActionResult> EditProfile(Luftreise_Command_project_.Models.User model)
+        public async Task<IActionResult> EditProfile(Luftreise_Luftreise.Presentation_.Models.User model)
         {
             var sessionEmail = HttpContext.Session.GetString("UserEmail");
             if (string.IsNullOrEmpty(sessionEmail))
